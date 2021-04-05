@@ -1,6 +1,8 @@
 /* global chrome */
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+
+import { DEFAULT_POSITION_VALUE } from "./constants";
 import "./content.css";
 
 const isWindowTop = () => window.scrollY === 0;
@@ -71,7 +73,7 @@ const SupportIcon = () => (
   </svg>
 );
 
-const Main = () => {
+const Content = () => {
   const [isTop, setIsTop] = useState(isWindowTop());
 
   useEffect(() => {
@@ -127,6 +129,20 @@ const Main = () => {
 };
 
 const app = document.createElement("div");
-app.id = "scroll-root";
+app.id = "scrollable-root";
 document.body.appendChild(app);
-ReactDOM.render(<Main />, app);
+ReactDOM.render(<Content />, app);
+
+chrome.storage.sync.get(
+  { position: DEFAULT_POSITION_VALUE },
+  ({ position }) => {
+    app.classList.add(position);
+  }
+);
+
+chrome.storage.onChanged.addListener((changes) => {
+  if (changes.position) {
+    app.classList.remove(changes.position.oldValue);
+    app.classList.add(changes.position.newValue);
+  }
+});

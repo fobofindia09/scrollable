@@ -1,54 +1,86 @@
-#scroll-root {
+#scrollable-root {
   position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  bottom: 0;
-  right: 0;
   height: 96px;
   width: 96px;
+  z-index: 9999;
 }
 
-#scroll-root button {
+#scrollable-root.middle-right {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+#scrollable-root.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+#scrollable-root.top-right {
+  top: 0;
+  right: 0;
+}
+
+#scrollable-root.middle-left {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#scrollable-root.bottom-left {
+  bottom: 0;
+}
+
+#scrollable-root.top-left {
+  top: 0;
+}
+
+#scrollable-root button {
   height: 32px;
   width: 32px;
   padding: 0px;
   border: none;
   border-radius: 16px;
-  background-color: #ffffff;
+  background-color: rgb(255, 255, 255, 0.3);
   box-shadow: 2px 4px 4px #323333;
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(2px);
   cursor: pointer;
-  opacity: 0.3;
 }
 
-#scroll-root button:focus {
+#scrollable-root button:focus {
   outline: none;
 }
 
-#scroll-root button:hover {
+#scrollable-root button:hover {
   box-shadow: 4px 6px 6px #323333;
-  opacity: 0.7;
+  background-color: rgb(255, 255, 255, 0.7);
 }
 
-#scroll-root svg {
+#scrollable-root svg {
   height: 32px;
   width: 32px;
+  opacity: 0.6;
 }
 
-#scroll-root button.scroll-to-top:hover svg path {
+#scrollable-root button:hover svg {
+  opacity: 1;
+}
+
+#scrollable-root button.scroll-to-top:hover svg path {
   fill: #f0f1f2;
 }
 
-#scroll-root button.scroll-to-bottom:hover svg path {
+#scrollable-root button.scroll-to-bottom:hover svg path {
   fill: #f0f1f2;
 }
 
-#scroll-root button.options:hover svg path {
+#scrollable-root button.options:hover svg path {
   fill: #c2c3c4;
 }
 
-#scroll-root button.support:hover svg path {
+#scrollable-root button.support:hover svg path {
   fill: #ff9d89;
 }
