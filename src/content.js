@@ -120,7 +120,11 @@ const Content = () => {
       </button>
       <button
         className={isBottom ? "support" : "scroll-to-bottom"}
-        onClick={isBottom ? () => {} : scrollToBottom}
+        onClick={
+          isBottom
+            ? () => chrome.runtime.sendMessage({ action: "openSupportPage" })
+            : scrollToBottom
+        }
       >
         {isBottom ? <SupportIcon /> : <ScrollToBottomIcon />}
       </button>

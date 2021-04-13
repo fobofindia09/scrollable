@@ -4,6 +4,9 @@ chrome.runtime.onMessage.addListener(function (message) {
     case "openOptionsPage":
       openOptionsPage();
       break;
+    case "openSupportPage":
+      openSupportPage();
+      break;
     default:
       break;
   }
@@ -11,4 +14,9 @@ chrome.runtime.onMessage.addListener(function (message) {
 
 function openOptionsPage() {
   chrome.runtime.openOptionsPage();
+}
+
+function openSupportPage() {
+  const supportPageUrl = "https://www.patreon.com/shahman";
+  chrome.tabs.create({ url: supportPageUrl });
 }
